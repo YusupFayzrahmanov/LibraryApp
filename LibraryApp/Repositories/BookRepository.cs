@@ -10,14 +10,20 @@ namespace LibraryApp.Repositories
     {
         private readonly LibraryContext _context;
 
-        public BookRepository(LibraryContext context)
+        public BookRepository()
         {
-            _context = context;
+            _context = new LibraryContext();
         }
 
-        public IEnumerable<Book> GetBooks()
+
+        public void SeedData(IEnumerable<Book> books)
         {
-            return _context.Books.ToList();
+            _context.Books.AddRange(books);
+        }
+
+        public IQueryable<Book> GetBooks()
+        {
+            return _context.Books;
         }
 
         public Book GetBook(int bookID)
@@ -65,5 +71,7 @@ namespace LibraryApp.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        
     }
 }

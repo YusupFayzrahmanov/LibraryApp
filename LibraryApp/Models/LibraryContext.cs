@@ -2,6 +2,7 @@
 
 namespace LibraryApp.Models
 {
+    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class LibraryContext:DbContext
     {
         public LibraryContext()

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Вход в систему";
+}
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+<div class="card">
+    <div class="card-header">
+        Вход в панель администратора
+    </div>
+    <div class="card-body">
+        <h4>Secret key: 0f8fad5b-d9cb-469f-a165-70867728950e</h4>
+        @using (Html.BeginForm("EnterSecretKey", "Admin", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="secretKey">Секретный ключ</label>
+                <input name="secretKey" type="text" class="form-control" id="inputSecretKey" aria-describedby="secretKey" placeholder="Введите секретный ключ">
+            </div>
+            <button type="submit" class="btn btn-primary">Вход</button>
+        }
+    </div>
+</div>
+

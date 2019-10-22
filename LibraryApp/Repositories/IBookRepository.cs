@@ -1,16 +1,24 @@
 ﻿using LibraryApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LibraryApp.Repositories
 {
     public interface IBookRepository:IDisposable
     {
+
+        /// <summary>
+        /// Заполнить бд
+        /// </summary>
+        /// <param name="books"></param>
+        void SeedData(IEnumerable<Book> books);
+
         /// <summary>
         /// Метод получения всех книг
         /// </summary>
         /// <returns></returns>
-        IEnumerable<Book> GetBooks();
+        IQueryable<Book> GetBooks();
 
         /// <summary>
         /// Получение книги по идентификатору

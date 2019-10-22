@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LibraryApp.Models.Book>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Издательство</th>
+                <th scope="col">Год</th>
+                <th scope="col">Описание</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var _book in Model)
+                {
+                    <tr>
+                        <td>@_book.Id</td>
+                        <td>@_book.Author</td>
+                        <td>@_book.Name</td>
+                        <td>@_book.PublishingHouse</td>
+                        <td>@_book.Year.Year.ToString()</td>
+                        <td>@_book.Description</td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Управление
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    @Html.ActionLink("Изменить", "EditBook", "Admin", new { bookID = _book.Id }, new { @class = "dropdown-item", datatoggle = "ajax-modal" })
+                                    @Html.ActionLink("Удалить", "DeleteBook", "Admin", new { bookID = _book.Id }, new { @class = "dropdown-item"})
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

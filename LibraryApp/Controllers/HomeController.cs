@@ -1,30 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using LibraryApp.Services;
+using LibraryApp.ViewModels;
 using System.Web.Mvc;
 
 namespace LibraryApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBookService _bookService;
+
+        public HomeController()
+        {
+            _bookService = new BookService();
+        }
+
+        public HomeController(IBookService bookService)
+        {
+            _bookService = bookService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            HomeViewModel _vm = new HomeViewModel()
+            {
+                Books = _bookService.GetAllBooks()
+            };
+            return View(_vm);
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index(string searchString)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            HomeViewModel _vm = new HomeViewModel()
+            {
+                Books = _bookService.GetBooks(searchString)
+            };
+            return View(_vm);
         }
 
-        public ActionResult Contact()
+        protected override void Dispose(bool disposing)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            _bookService.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

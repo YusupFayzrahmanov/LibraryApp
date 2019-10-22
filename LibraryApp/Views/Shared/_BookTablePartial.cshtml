@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LibraryApp.Models.Book>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Автор</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Издательство</th>
+                <th scope="col">Год</th>
+                <th scope="col">Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                foreach(var _book in Model)
+                {
+                    <tr>
+                        <td>@_book.Id</td>
+                        <td>@_book.Author</td>
+                        <td>@_book.Name</td>
+                        <td>@_book.PublishingHouse</td>
+                        <td>@_book.Year.Year.ToString()</td>
+                        <td>@_book.Description</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

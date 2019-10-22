@@ -1,3 +1,21 @@
-﻿@{
+﻿@model LibraryApp.ViewModels.HomeViewModel
+@{
     ViewBag.Title = "Список книг";
 }
+@if (ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+<h1>Библиотека</h1>
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-auto">
+            <input name="searchString" class="form-control" type="text" placeholder="Строка поиска">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-success mb-2">Поиск</button>
+        </div>
+    </div>
+}
+@{ Html.RenderPartial("_BookTablePartial", Model.Books);}

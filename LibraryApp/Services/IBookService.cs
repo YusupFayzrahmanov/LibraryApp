@@ -20,7 +20,7 @@ namespace LibraryApp.Services
         /// <param name="name"></param>
         /// <param name="author"></param>
         /// <returns></returns>
-        IEnumerable<Book> GetBooks(string name, string author);
+        IEnumerable<Book> GetBooks(string searchString);
 
         /// <summary>
         /// 
@@ -33,13 +33,25 @@ namespace LibraryApp.Services
         /// 
         /// </summary>
         /// <param name="book"></param>
+        void CreateBook(Book book);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="book"></param>
+        void UpdateBook(Book book);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="book"></param>
         void EditBook(Book book);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="book"></param>
-        void DeleteBook(Book book);
+        void DeleteBook(int bookID);
 
         /// <summary>
         /// 

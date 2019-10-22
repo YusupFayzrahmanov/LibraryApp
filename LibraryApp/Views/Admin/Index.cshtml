@@ -1,7 +1,36 @@
-﻿
+﻿@model LibraryApp.ViewModels.AdminPanelViewModel
 @{
     ViewBag.Title = "Панель администратора";
 }
+@if(ViewBag.Message != null)
+{
+    <h3>@ViewBag.Message</h3>
+}
+<div id="ajax-modal-placeholder"></div>
+<div class="row">
+    <div class="col-md-3">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".add-book-modal">Добавить книгу</button>
+    </div>
+    @using (Html.BeginForm("Index", "Admin", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="col-auto">
+                <input name="searchString" class="form-control" type="text" placeholder="Строка поиска">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success mb-2">Поиск</button>
+            </div>
+        </div>
+    }
 
-<h2>Index</h2>
+</div>
+@{ Html.RenderPartial("_AddBookModalPartial", Model.Book);}
+<div class="row">
+    @{ Html.RenderPartial("_AdminBookTablePartial", Model.Books);}
+</div>
+@section Scripts
+{
+    @Scripts.Render("~/Scripts/AjaxModalScript.js")
+}
+
 
